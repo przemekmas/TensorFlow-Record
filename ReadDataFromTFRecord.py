@@ -7,10 +7,10 @@ from dir_traversal_tfrecord import tfrecord_auto_traversal
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
-flags.DEFINE_integer("image_number", 300, "Number of images in your tfrecord, default is 300.")
+flags.DEFINE_integer("image_number", 6345 , "Number of images in your tfrecord, default is 6345.")
 flags.DEFINE_integer("class_number", 3, "Number of class in your dataset/label.txt, default is 3.")
-flags.DEFINE_integer("image_height", 299, "Height of the output image after crop and resize. Default is 299.")
-flags.DEFINE_integer("image_width", 299, "Width of the output image after crop and resize. Default is 299.")
+flags.DEFINE_integer("image_height", 20, "Height of the output image after crop and resize. Default is 299.")
+flags.DEFINE_integer("image_width", 20, "Width of the output image after crop and resize. Default is 299.")
 
 def _int64_feature(value):
   """Wrapper for inserting int64 features into Example proto."""
@@ -76,13 +76,13 @@ with tf.Session() as sess:
     sess.run(tf.initialize_all_variables())
     coord = tf.train.Coordinator()
     threads = tf.train.start_queue_runners(coord=coord)
-    print("Write cropped and resized image to the folder './resized_image'") 
+    print("Write cropped and resized image to the folder './Resized Images'") 
     for i in range(FLAGS.image_number): # number of examples in your tfrecord
         pre_image, pre_label = sess.run([current_image_object.image, current_image_object.label])
         img = Image.fromarray(pre_image, "RGB")
-        if not os.path.isdir("./resized_image/"):
-            os.mkdir("./resized_image")
-        img.save(os.path.join("./resized_image/class_"+str(pre_label)+"_Index_"+str(i)+".jpeg"))
+        if not os.path.isdir("./Resized Images/"):
+            os.mkdir("./Resized Images")
+        img.save(os.path.join("./Resized Images/class_"+str(pre_label)+"_Index_"+str(i)+".jpeg"))
         if i % 10 == 0:
             print ("%d images in %d has finished!" % (i, FLAGS.image_number))
     print("Complete!!")
@@ -90,7 +90,7 @@ with tf.Session() as sess:
     coord.join(threads)
     sess.close()
 
-print("cd to current directory, the folder 'resized_image' should contains %d images with %dx%d size." % (FLAGS.image_number,FLAGS.image_height, FLAGS.image_width))
+print("cd to current directory, the folder 'Resized Images' should contains %d images with %dx%d size." % (FLAGS.image_number,FLAGS.image_height, FLAGS.image_width))
 
 """
 images, sparse_labels = tf.train.shuffle_batch(
