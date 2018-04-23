@@ -9,8 +9,8 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 flags.DEFINE_integer("image_number", 6345 , "Number of images in your tfrecord, default is 6345.")
 flags.DEFINE_integer("class_number", 3, "Number of class in your dataset/label.txt, default is 3.")
-flags.DEFINE_integer("image_height", 20, "Height of the output image after crop and resize. Default is 299.")
-flags.DEFINE_integer("image_width", 20, "Width of the output image after crop and resize. Default is 299.")
+flags.DEFINE_integer("image_height", 28, "Height of the output image after crop and resize. Default is 299.")
+flags.DEFINE_integer("image_width", 28, "Width of the output image after crop and resize. Default is 299.")
 
 def _int64_feature(value):
   """Wrapper for inserting int64 features into Example proto."""
@@ -81,8 +81,8 @@ with tf.Session() as sess:
         pre_image, pre_label = sess.run([current_image_object.image, current_image_object.label])
         img = Image.fromarray(pre_image, "RGB")
         if not os.path.isdir("./Resized Images/"):
-            os.mkdir("./Resized Images")
-        img.save(os.path.join("./Resized Images/class_"+str(pre_label)+"_Index_"+str(i)+".jpeg"))
+            os.mkdir("./Resized Images")		
+        img.save(os.path.join("./Resized Images/"+str(++i)+".Bmp"))
         if i % 10 == 0:
             print ("%d images in %d has finished!" % (i, FLAGS.image_number))
     print("Complete!!")
@@ -92,11 +92,3 @@ with tf.Session() as sess:
 
 print("cd to current directory, the folder 'Resized Images' should contains %d images with %dx%d size." % (FLAGS.image_number,FLAGS.image_height, FLAGS.image_width))
 
-"""
-images, sparse_labels = tf.train.shuffle_batch(
-        [image, label], 
-        batch_size = 5, 
-        num_threads=2, 
-        capacity = 10, 
-        min_after_dequeue= 5)
-"""
