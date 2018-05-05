@@ -39,7 +39,7 @@ This GitHub repository aims to help with feeding a custom dataset through a conv
 
 ## References
 
-# The links below have been used to get some of the code for this repository
+The links below have been used to get some of the code for this repository
 
 * https://github.com/yeephycho/tensorflow_input_image_by_tfrecord
 * https://github.com/sujayVittal/Machine-Learning-with-TensorFlow-Study-Jam-2017/blob/master/mnist-advanced.py
