@@ -4,7 +4,7 @@ This GitHub repository aims to help with feeding a custom dataset through a conv
 
 ## Main Steps
 
-### Begginer Tips
+### Beginner Tips
 
 * If you are creating the TFRecords and custom data by using the current scripts. Please make sure that the folder structure stays the same.
 * If you want to use your own data to create the TFRecords you will need to follow the steps provided.
@@ -29,7 +29,7 @@ This GitHub repository aims to help with feeding a custom dataset through a conv
 ### Training
 
 * In order to train your data which is now stored in your TFRecords. You will need to run the TrainCustomDataset.py script.
-* The training process will now being and you will be able to see the training accuracy.
+* The training process will now begin and you will be able to see the training accuracy.
 * Also, the graph will be saved in ckpt format.
 * You have successfully trained a custom dataset by the use of TensorFlow.
 
